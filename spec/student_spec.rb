@@ -78,6 +78,8 @@ describe "Student" do
     it 'creates an instance with corresponding attribute values' do
       row = [1, "Pat", 12]
       pat = Student.new_from_db(row)
+      puts pat
+      puts row
 
       expect(pat.id).to eq(row[0])
       expect(pat.name).to eq(row[1])
@@ -89,6 +91,7 @@ describe "Student" do
     it 'returns an instance of student that matches the name from the DB' do
       josh.save
       josh_id = josh.id
+      Student.all.each {|student| puts student.id }
       josh_from_db = Student.find_by_name("Josh")
       expect(josh_from_db.name).to eq("Josh")
       expect(josh_from_db.grade).to eq("9th")
