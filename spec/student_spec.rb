@@ -1,4 +1,5 @@
 require "spec_helper"
+require "pry"
 
 describe "Student" do
 
@@ -64,8 +65,8 @@ describe "Student" do
       jane.save
       jane_from_db = DB[:conn].execute("SELECT * FROM students WHERE id = ?", jane_id)
       expect(jane_from_db[0][1]).to eq("Jane Smith")
-    end
-  end
+   end
+end
 
   describe ".create" do
     it 'creates a student with two attributes, name and grade, and saves it into the students table.' do
@@ -78,6 +79,7 @@ describe "Student" do
     it 'creates an instance with corresponding attribute values' do
       row = [1, "Pat", 12]
       pat = Student.new_from_db(row)
+      # binding.pry
 
       expect(pat.id).to eq(row[0])
       expect(pat.name).to eq(row[1])
